@@ -1,0 +1,1165 @@
+/* ==========================================================================
+   FANTA LEGA-CULO — design tokens
+   Palette pulled straight from the crest: deep navy + whistle red.
+   Display type is a condensed athletic face (kit-number energy), body is a
+   calm humanist sans, and a mono face carries every number/date/edition tag
+   like a scoreboard readout.
+   Signature element: the "figurina" (sticker) card — a nod to Panini
+   football-sticker albums, which is exactly what this site is: an album of
+   friends who play too much fantacalcio.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --navy: #1d2d51;
+  --navy-deep: #121d38;
+  --red: #e30b13;
+  --red-dark: #a8080e;
+  --cream: #f6f2e7;
+  --paper: #fffdf7;
+  --gold: #c9982c;
+  --ink: #181a1f;
+  --ink-soft: #4a4c56;
+  --line: rgba(24, 26, 31, 0.12);
+
+  --display: "Anton", "Arial Narrow", sans-serif;
+  --body: "Work Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius: 14px;
+  --container: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(24, 26, 31, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: 8px;
+  z-index: 100;
+  background: var(--paper);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 2px solid var(--navy);
+}
+
+.skip-link:focus-visible {
+  top: 8px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Header / nav ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--navy);
+  border-bottom: 4px solid var(--red);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 68px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--paper);
+}
+
+.brand img {
+  height: 42px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.brand-word {
+  font-family: var(--display);
+  letter-spacing: 0.02em;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--paper);
+}
+
+.brand-word span {
+  color: var(--red);
+}
+
+.main-nav {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  touch-action: manipulation;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.main-nav a:hover {
+  color: var(--paper);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.main-nav a.active {
+  color: var(--navy);
+  background: var(--paper);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--paper);
+  box-shadow: 0 4px 0 var(--red-dark);
+}
+
+.btn-primary:hover {
+  transform: translateY(1px);
+  box-shadow: 0 3px 0 var(--red-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--paper);
+}
+
+.btn-ghost:hover {
+  border-color: var(--paper);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  background: var(--navy);
+  background-image: radial-gradient(
+    circle at 15% 20%,
+    rgba(227, 11, 19, 0.18),
+    transparent 45%
+  );
+  color: var(--paper);
+  padding: 64px 0 76px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--red);
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-crest img {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35));
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.hero h1 .accent {
+  color: var(--red);
+}
+
+.hero p.lede {
+  font-size: 1.05rem;
+  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 26px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-row {
+  display: flex;
+  gap: 28px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat .num {
+  font-family: var(--display);
+  font-size: 2.1rem;
+  color: var(--paper);
+  line-height: 1;
+}
+
+.stat .label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 4px;
+}
+
+/* ---------- Section shell ---------- */
+
+.section {
+  padding: 64px 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin: 0;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+.section-head .sub {
+  font-family: var(--mono);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.section-tease {
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: -14px 0 30px;
+}
+
+/* ---------- Figurina / sticker card (signature element) ---------- */
+
+.figurina {
+  --tilt: -2deg;
+  position: relative;
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 14px 14px 18px;
+  border: 1px solid var(--line);
+  box-shadow:
+    0 1px 0 rgba(24, 26, 31, 0.04),
+    0 14px 26px -18px rgba(18, 29, 56, 0.45);
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  transform: rotate(0deg);
+}
+
+.figurina:hover {
+  transform: rotate(var(--tilt)) translateY(-4px);
+  box-shadow:
+    0 1px 0 rgba(24, 26, 31, 0.04),
+    0 22px 34px -18px rgba(18, 29, 56, 0.55);
+}
+
+/* die-cut perforation along the top, like a sticker torn from the sheet */
+.figurina::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 10px;
+  right: 10px;
+  height: 10px;
+  background-image: radial-gradient(
+    circle,
+    var(--cream) 2.6px,
+    transparent 2.7px
+  );
+  background-size: 14px 14px;
+  background-position: 0 -6px;
+  background-repeat: repeat-x;
+}
+
+.figurina-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--navy);
+  margin-bottom: 12px;
+}
+
+.figurina-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figurina-edition {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--navy);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.figurina-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+}
+
+.figurina-status.ex {
+  background: rgba(24, 26, 31, 0.78);
+  color: var(--paper);
+}
+
+.figurina.ex .figurina-photo img {
+  filter: grayscale(1);
+}
+
+.figurina h3 {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  margin: 0 0 2px;
+  letter-spacing: 0.01em;
+}
+
+.figurina .team {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+
+.figurina .medals {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.medal {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--ink-soft);
+}
+
+.medal.gold {
+  background: #fbf1d9;
+  border-color: #e6c667;
+  color: #7a5c0c;
+}
+
+.medal.silver {
+  background: #eef0f4;
+  border-color: #c7cbd6;
+  color: #4a4c56;
+}
+
+.medal.bronze {
+  background: #f6e6d8;
+  border-color: #d9ab7e;
+  color: #7a4a1c;
+}
+
+.medal.down {
+  background: #fbe6e6;
+  border-color: #e6a3a3;
+  color: var(--red-dark);
+}
+
+.figurina-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.figurina-grid .figurina {
+  display: flex;
+  flex-direction: column;
+}
+
+.figurina-grid .figurina .medals {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* ---------- Manager detail page ---------- */
+
+.manager-hero {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.manager-card {
+  --tilt: -1.5deg;
+  position: sticky;
+  top: 92px;
+}
+
+.manager-card .figurina-photo {
+  aspect-ratio: 3 / 4;
+}
+
+.manager-intro .kicker {
+  font-family: var(--mono);
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  margin: 0 0 8px;
+}
+
+.manager-intro h1 {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin: 0 0 6px;
+  line-height: 0.98;
+}
+
+.manager-intro .subtitle {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+}
+
+.badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.badge-row .medal {
+  font-size: 0.75rem;
+  padding: 5px 11px;
+}
+
+.crest-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px 6px 6px;
+}
+
+.crest-chip img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: var(--navy);
+}
+
+.crest-chip .name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* career timeline */
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--line);
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 22px 24px;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--red);
+}
+
+.timeline li.current::before {
+  background: var(--red);
+}
+
+.timeline .range {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline .team-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* squad assets inside timeline */
+
+.timeline-squad {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timeline-crest {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: var(--navy);
+  padding: 3px;
+}
+
+.timeline-squad--current .timeline-crest {
+  width: 56px;
+  height: 56px;
+  padding: 5px;
+}
+
+.timeline-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.squad-shirt {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.timeline-squad--current .squad-shirt {
+  width: 64px;
+  height: 64px;
+}
+
+.trophy-list {
+  display: grid;
+  gap: 10px;
+}
+
+.trophy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.trophy-row .what {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.trophy-row .count {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  color: var(--navy);
+}
+
+.trophy-row.down .count {
+  color: var(--red);
+}
+
+.trophy-row .editions {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Albo d'oro: season scoreboard ---------- */
+
+.season-list {
+  display: grid;
+  gap: 14px;
+}
+
+.season-row {
+  display: grid;
+  grid-template-columns: 92px repeat(4, 1fr);
+  gap: 16px;
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.season-badge {
+  font-family: var(--display);
+  background: var(--navy);
+  color: var(--paper);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+  line-height: 1;
+}
+
+.season-badge .ed {
+  font-size: 1.3rem;
+  display: block;
+}
+
+.season-badge .yr {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--gold);
+  display: block;
+  margin-top: 3px;
+}
+
+.season-cell .k {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.season-cell .v {
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+.season-cell.empty .v {
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.season-cell a {
+  text-decoration: none;
+  border-bottom: 1px dashed var(--line);
+}
+
+.season-cell a:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* medagliere / standings */
+
+.medagliere {
+  display: grid;
+  gap: 10px;
+}
+
+.podio-row {
+  display: grid;
+  grid-template-columns: 46px 60px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.podio-row.rank-1 {
+  border-color: #e6c667;
+  background: linear-gradient(90deg, #fdf6e3, var(--paper) 55%);
+}
+
+.podio-row.rank-2 {
+  border-color: #c7cbd6;
+}
+
+.podio-row.rank-3 {
+  border-color: #d9ab7e;
+}
+
+.podio-pos {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.podio-row.rank-1 .podio-pos,
+.podio-row.rank-2 .podio-pos,
+.podio-row.rank-3 .podio-pos {
+  color: var(--ink);
+}
+
+.podio-photo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.podio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.podio-name {
+  font-weight: 700;
+}
+
+.podio-name a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.podio-name a:hover {
+  text-decoration: underline;
+}
+
+.podio-medals {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* ---------- Current squad card (manager detail page) ---------- */
+
+.squad-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: var(--paper);
+}
+
+.squad-card-banner {
+  height: 10px;
+  background: linear-gradient(90deg, var(--squad-c1), var(--squad-c2));
+}
+
+.squad-card-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 20px 20px 24px;
+}
+
+.squad-card-visuals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.squad-card-logo {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--navy);
+  padding: 8px;
+}
+
+.squad-card-shirt {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.squad-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.squad-card-label {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--squad-c1);
+  margin: 0 0 6px;
+}
+
+.squad-card-name {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  margin: 0 0 16px;
+  line-height: 1;
+}
+
+.squad-emoji {
+  font-style: normal;
+  text-transform: none;
+  display: inline-block;
+}
+
+.squad-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.squad-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.squad-meta-key {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.squad-meta-val {
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+.squad-colors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.color-codes {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+@media (max-width: 480px) {
+  .squad-card-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .squad-meta-item {
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .squad-meta-key {
+    width: auto;
+  }
+}
+
+.site-footer {
+  background: var(--navy-deep);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 40px 0;
+  margin-top: 40px;
+  border-top: 4px solid var(--red);
+}
+
+.site-footer .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.site-footer strong {
+  color: var(--paper);
+}
+
+/* ---------- Tabs (used on Albo d'oro page) ---------- */
+
+.tabs {
+  display: inline-flex;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.tabs button {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.tabs button.active {
+  background: var(--navy);
+  color: var(--paper);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ---------- misc ---------- */
+
+.empty-state {
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 30px 0;
+}
+
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--navy);
+  border-bottom: 1px dashed var(--line);
+}
+
+@media (max-width: 720px) {
+  .hero .wrap {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .hero-crest img {
+    width: 96px;
+  }
+
+  .manager-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .manager-card {
+    position: static;
+    max-width: 260px;
+  }
+
+  .season-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .season-row .season-badge {
+    grid-column: 1 / -1;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+    background: none;
+    color: var(--navy);
+  }
+
+  .season-badge .yr {
+    color: var(--ink-soft);
+    margin-top: 0;
+  }
+
+  .podio-row {
+    grid-template-columns: 34px 40px 1fr;
+  }
+
+  .podio-medals {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+
+  .site-header .wrap {
+    justify-content: flex-start;
+  }
+
+  .main-nav {
+    width: 100%;
+    order: 3;
+    padding-bottom: 2px;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

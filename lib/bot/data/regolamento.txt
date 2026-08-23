@@ -1,0 +1,60 @@
+REGOLAMENTO FANTA LEGA-CULO (sintesi)
+
+COMPETIZIONI: Campionato (38 giornate Serie A), Coppa Culo (highlander), Supercoppa Culo (1ª giornata).
+
+COPPA CULO: modalità highlander (sedie musicali). Ogni turno viene eliminata la squadra col minor punteggio totale. Turni: 7ª, 12ª, 18ª, 23ª, 28ª, 32ª giornata. Finale: 35ª giornata.
+
+SUPERCOPPA: si gioca alla 1ª giornata tra vincitore Campionato e vincitore Coppa Culo della stagione precedente. Se sono lo stesso, gioca il 2° classificato.
+
+ROSE: 25 calciatori (3P, 8D, 8C, 6A). Budget asta: 500 Fanta Milioni. Base d'asta: 1. No crediti extra per riparazione invernale.
+
+MODULI CONSENTITI: 3-5-2, 3-4-3, 4-5-1, 4-4-2, 4-3-3, 5-3-2, 5-4-1.
+
+FORMAZIONI: consegna entro 1 minuto prima della prima partita. Max 10 in panchina (senza vincolo di ruolo).
+
+SOSTITUZIONI: max 3. Se partita rinviata: sostituzioni illimitate + eventuale 6 politico.
+
+CALCOLO GOL: soglie ogni 6 punti. Primo gol a 66, poi 72, 78, 84, 90, 96, ecc.
+
+CLASSIFICA: 3 punti vittoria, 1 pareggio, 0 sconfitta. Criteri parità: 1) Punti classifica (Pt), 2) Punti Totali (PtTot, somma fantapunteggi stagionali, nell'ordine delle migliaia es. 2600), 3) gol fatti, 4) gol subiti. ATTENZIONE: "Punti" e "Punti Totali" sono due cose completamente diverse.
+
+BONUS/MALUS:
+- Gol portiere: +12
+- Porta inviolata portiere: +1
+- Gol D/C/A: +3
+- Assist: +1
+- Ammonizione: -0.5
+- Espulsione: -1
+- Autorete: -2
+- Rigore realizzato portiere: +12
+- Rigore realizzato D/C/A: +3
+- Rigore sbagliato: -3
+No altri bonus (no contributo gol, no gol decisivo).
+
+MODIFICATORE DIFESA: attivo solo con 4+ difensori schierati. Media voto dei 3 migliori difensori + portiere (senza bonus/malus):
+- Media 6.00-6.49: +1 punto
+- Media 6.50-6.99: +3 punti
+- Media ≥7.00: +6 punti
+
+SCOMMESSA: 1 giocatore per stagione, under 20, acquistato a max 3 FM. Dichiarato entro il giorno dell'asta. Può essere riscattato alla stessa cifra la stagione dopo. Retrocesso perde il diritto.
+
+SCAMBI: illimitati durante calciomercato e fino a 5 giorni dopo. 2 finestre extra dopo ogni asta di riparazione. Un giocatore scambiato non può tornare ai precedenti proprietari.
+
+SVINCOLI: max 7 per asta di riparazione, comunicati la sera prima. No riacquisto di giocatore svincolato dalla stessa società.
+
+RIMBORSO SVINCOLI:
+- Giocatore ceduto all'estero: 50% valore acquisto (arrotondato per eccesso)
+- Ceduto all'estero tra asta inizio e asta riparazione estiva: 100%
+- Ceduto all'estero dopo fine mercato: 50% + sostituzione con svincolato
+- Rescissione: 50% + sostituzione
+- Decesso: 100% + sostituzione
+- Infortunato svincolato: 50%, svincolo dalla prima asta utile
+
+ISCRIZIONE: €50 a testa. Montepremi €400: 1° €230, 2° €70, 3° €50, Coppa Culo €50.
+
+OBBLIGHI:
+- Campione d'inverno: porta brioches all'asta invernale
+- Vincitore campionato: offre cena (max €20/persona, no fast food, entro fine giugno)
+- Ultimo classificato: offre brioches + tramezzino alla prima asta successiva + deve cambiare nome/logo/colori squadra (retrocessione)
+
+MODIFICHE REGOLAMENTO: votazione 50%+1 dei partecipanti. Mai a stagione in corso.
