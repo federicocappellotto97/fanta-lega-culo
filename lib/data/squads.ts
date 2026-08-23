@@ -55,8 +55,6 @@ export const SQUADS: Record<string, Squad> = {
     nome: "Niente Male",
     colori: ["#f5c518", "#1a1a1a"],
     emoji: "⚠️",
-    fantacalcioId: 3218391,
-    matchKeyword: "NIENTE",
   },
   fininvest: {
     nome: "Fininvest FC",
@@ -128,6 +126,9 @@ export const SQUADS: Record<string, Squad> = {
   "latex-boys": {
     nome: "Latex Boys",
     colori: ["#1a1a1a", "#ffffff"],
+    emoji: "🌚",
+    fantacalcioId: 3218391,
+    matchKeyword: "LATEX",
   },
 };
 
