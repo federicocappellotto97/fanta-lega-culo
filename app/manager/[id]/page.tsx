@@ -221,6 +221,10 @@ export default function ManagerPage({ params }: { params: { id: string } }) {
             </div>
             <h3>{manager.nome}</h3>
             <p className="team">{currentSquadName}</p>
+            <p className="figurina-squads">
+              {manager.squadre.length}{" "}
+              {manager.squadre.length === 1 ? "squadra" : "squadre"}
+            </p>
           </div>
 
           {/* Right: manager intro */}

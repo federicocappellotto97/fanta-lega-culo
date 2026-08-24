@@ -102,6 +102,10 @@ function FigurinaCard({ manager }: { manager: Manager }) {
       </div>
       <h3>{manager.nome}</h3>
       <p className="team">{getSquadName(squadId)}</p>
+      <p className="figurina-squads">
+        {manager.squadre.length}{" "}
+        {manager.squadre.length === 1 ? "squadra" : "squadre"}
+      </p>
       <div className="medals">
         <CompactMedals managerId={manager.id} />
       </div>

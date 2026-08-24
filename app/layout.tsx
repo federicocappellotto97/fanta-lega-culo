@@ -1,4 +1,5 @@
 import "./globals.css";
+import MainNav from "./components/MainNav";
 
 export const metadata = {
   title: {
@@ -34,11 +35,7 @@ export default function RootLayout({
                 FANTA LEGA<span>-CULO</span>
               </span>
             </a>
-            <nav className="main-nav" aria-label="Navigazione principale">
-              <a href="/">Home</a>
-              <a href="/albo">Albo d&apos;oro</a>
-              <a href="/partecipanti">Partecipanti</a>
-            </nav>
+            <MainNav />
           </div>
         </header>
 
