@@ -9,7 +9,7 @@
    friends who play too much fantacalcio.
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Work+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap");
 
 :root {
   --navy: #1d2d51;
@@ -24,7 +24,7 @@
   --line: rgba(24, 26, 31, 0.12);
 
   --display: "Anton", "Arial Narrow", sans-serif;
-  --body: "Work Sans", system-ui, sans-serif;
+  --body: "Nunito Sans", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --radius: 14px;
@@ -181,7 +181,7 @@ img {
 }
 
 .main-nav a.active {
-  color: var(--navy);
+  color: var(--red);
   background: var(--paper);
 }
 

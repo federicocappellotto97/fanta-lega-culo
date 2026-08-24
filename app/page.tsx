@@ -273,7 +273,7 @@ export default function HomePage() {
               LEGA<span className="accent">-CULO</span>
             </h1>
             <p className="lede">
-              Tredici manager, un solo trofeo che conta davvero: non essere
+              Dieci manager, un solo trofeo che conta davvero: non essere
               l&apos;ultimo. Qui dentro trovi l&apos;albo d&apos;oro, i
               partecipanti e la scheda di ciascuno &mdash; fantapunti, sfottò e
               retrocessioni comprese.
