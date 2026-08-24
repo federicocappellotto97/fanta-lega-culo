@@ -460,7 +460,14 @@ img {
 .figurina .team {
   font-size: 0.85rem;
   color: var(--ink-soft);
+  margin: 0 0 4px;
+}
+
+.figurina-squads {
+  font-size: 0.75rem;
+  color: var(--ink-muted, #888);
   margin: 0 0 10px;
+  letter-spacing: 0.02em;
 }
 
 .figurina .medals {
