@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Pagina non trovata",
 };
@@ -28,9 +30,9 @@ export default function NotFound() {
         >
           La pagina che stai cercando non esiste o è stata spostata.
         </p>
-        <a href="/" className="btn btn-primary">
+        <Link href="/" className="btn btn-primary">
           Torna alla home
-        </a>
+        </Link>
       </div>
     </div>
   );

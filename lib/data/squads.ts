@@ -6,7 +6,7 @@
 
 export interface Squad {
   nome: string;
-  colori: [string, string];
+  colori: [string] | [string, string];
   emoji?: string;
   /** ID numerico su leghe.fantacalcio.it — solo squadre attive nella stagione corrente */
   fantacalcioId?: number;
@@ -58,7 +58,7 @@ export const SQUADS: Record<string, Squad> = {
   },
   fininvest: {
     nome: "Fininvest FC",
-    colori: ["#e040a0", "#c0007a"],
+    colori: ["#9e0b5d", "#757690"],
     emoji: "🌷",
     fantacalcioId: 3215983,
     matchKeyword: "FININVEST",
@@ -72,14 +72,14 @@ export const SQUADS: Record<string, Squad> = {
   },
   alnitakers: {
     nome: "Alnitakers",
-    colori: ["#4a9edd", "#2176ae"],
+    colori: ["#015885"],
     emoji: "🚀",
     fantacalcioId: 3216190,
     matchKeyword: "ALNITAKERS",
   },
   "pink-panther": {
     nome: "Pink Panther",
-    colori: ["#f48fb1", "#90caf9"],
+    colori: ["#fc8cbc", "#27a7fa"],
     emoji: "🐾",
     fantacalcioId: 3229172,
     matchKeyword: "PANTHER",
@@ -90,7 +90,7 @@ export const SQUADS: Record<string, Squad> = {
   },
   ottavo: {
     nome: "Ottavo",
-    colori: ["#2e7d32", "#1b5e20"],
+    colori: ["#33af71", "#106939"],
     emoji: "🎱",
     fantacalcioId: 5325679,
     matchKeyword: "OTTAVO",

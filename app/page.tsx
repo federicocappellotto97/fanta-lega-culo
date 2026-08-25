@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MANAGERS } from "@/lib/data/managers";
 import {
   ALBO_D_ORO,
@@ -17,10 +18,6 @@ export const metadata = { title: "FANTA LEGA-CULO" };
 
 function managerFallback(id: string) {
   return `https://picsum.photos/seed/${encodeURIComponent(id)}/480/640`;
-}
-
-function crestFallback(slug: string) {
-  return `https://api.dicebear.com/9.x/shapes/svg?seed=${encodeURIComponent(slug)}&backgroundColor=1d2d51,e30b13`;
 }
 
 /* ---------- Medal chips ---------- */
@@ -89,9 +86,9 @@ function FigurinaCard({ manager }: { manager: Manager }) {
   const active = manager.presenteFinoAl === null;
 
   return (
-    <a
+    <Link
       className={`figurina${active ? "" : " ex"}`}
-      href={`/manager/${manager.id}`}
+      href={`/partecipanti/${manager.id}`}
     >
       <div className="figurina-photo">
         <FallbackImg
@@ -109,7 +106,7 @@ function FigurinaCard({ manager }: { manager: Manager }) {
       <div className="medals">
         <CompactMedals managerId={manager.id} />
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -142,9 +139,9 @@ function SeasonRow({ ed }: { ed: Edizione }) {
       <SeasonCell
         label="🏆 Campionato"
         value={
-          <a href={`/manager/${ed.campionatoId}`}>
+          <Link href={`/partecipanti/${ed.campionatoId}`}>
             {getManagerName(ed.campionatoId)}
-          </a>
+          </Link>
         }
         empty="—"
       />
@@ -152,7 +149,9 @@ function SeasonRow({ ed }: { ed: Edizione }) {
         label="🥈 Coppa Culo"
         value={
           ed.coppaId ? (
-            <a href={`/manager/${ed.coppaId}`}>{getManagerName(ed.coppaId)}</a>
+            <Link href={`/partecipanti/${ed.coppaId}`}>
+              {getManagerName(ed.coppaId)}
+            </Link>
           ) : null
         }
         empty="Non fatta"
@@ -161,9 +160,9 @@ function SeasonRow({ ed }: { ed: Edizione }) {
         label="🎖️ Supercoppa"
         value={
           ed.supercoppaId ? (
-            <a href={`/manager/${ed.supercoppaId}`}>
+            <Link href={`/partecipanti/${ed.supercoppaId}`}>
               {getManagerName(ed.supercoppaId)}
-            </a>
+            </Link>
           ) : null
         }
         empty="Non fatta"
@@ -171,10 +170,10 @@ function SeasonRow({ ed }: { ed: Edizione }) {
       <SeasonCell
         label="📉 Retrocesso"
         value={
-          <a href={`/manager/${ed.retrocessoId}`}>
+          <Link href={`/partecipanti/${ed.retrocessoId}`}>
             {getManagerName(ed.retrocessoId)} (
             {getSquadName(ed.retrocessoSquadId)})
-          </a>
+          </Link>
         }
         empty="—"
       />
@@ -230,7 +229,7 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
         />
       </div>
       <div className="podio-name">
-        <a href={`/manager/${row.manager.id}`}>{row.manager.nome}</a>
+        <Link href={`/partecipanti/${row.manager.id}`}>{row.manager.nome}</Link>
       </div>
       <div className="podio-medals">
         {chips.length ? chips : <span className="medal">Bacheca vuota</span>}
@@ -279,12 +278,12 @@ export default function HomePage() {
               retrocessioni comprese.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="/albo">
+              <Link className="btn btn-primary" href="/albo">
                 Albo d&apos;oro
-              </a>
-              <a className="btn btn-ghost" href="/partecipanti">
+              </Link>
+              <Link className="btn btn-ghost" href="/partecipanti">
                 Partecipanti
-              </a>
+              </Link>
             </div>
             <div className="stat-row">
               <div className="stat">
@@ -324,9 +323,9 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head">
             <h2>Il podio di sempre</h2>
-            <a className="sub" href="/albo">
+            <Link className="sub" href="/albo">
               Vedi il medagliere completo &rarr;
-            </a>
+            </Link>
           </div>
           <div className="medagliere">
             {podio.map((row, i) => (
@@ -341,9 +340,9 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head">
             <h2>L&apos;album</h2>
-            <a className="sub" href="/partecipanti">
+            <Link className="sub" href="/partecipanti">
               Vedi tutti i partecipanti &rarr;
-            </a>
+            </Link>
           </div>
           <div className="figurina-grid">
             {active.map((m) => (

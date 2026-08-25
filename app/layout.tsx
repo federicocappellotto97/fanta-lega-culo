@@ -1,4 +1,5 @@
 import "./globals.css";
+import Link from "next/link";
 import MainNav from "./components/MainNav";
 
 export const metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
 
         <header className="site-header">
           <div className="wrap">
-            <a className="brand" href="/">
+            <Link className="brand" href="/">
               <img
                 src="/assets/logo.png"
                 alt="Stemma FANTA LEGA-CULO"
@@ -34,7 +35,7 @@ export default function RootLayout({
               <span className="brand-word">
                 FANTA LEGA<span>-CULO</span>
               </span>
-            </a>
+            </Link>
             <MainNav />
           </div>
         </header>

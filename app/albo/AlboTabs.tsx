@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Edizione, MedagliereRow } from "@/lib/data/halloffame";
 import { getManagerName } from "@/lib/data/halloffame";
+import Link from "next/link";
 import { getSquadName } from "@/lib/data/squads";
 
 interface Props {
@@ -16,9 +17,7 @@ type Tab = "stagioni" | "medagliere";
 
 function SeasonRow({ ed }: { ed: Edizione }) {
   const managerLink = (id: string | null) =>
-    id ? (
-      <a href={`/manager/${id}`}>{getManagerName(id)}</a>
-    ) : null;
+    id ? <Link href={`/partecipanti/${id}`}>{getManagerName(id)}</Link> : null;
 
   return (
     <div className="season-row">
@@ -49,9 +48,10 @@ function SeasonRow({ ed }: { ed: Edizione }) {
       <div className="season-cell">
         <span className="k">📉 Retrocesso</span>
         <span className="v">
-          <a href={`/manager/${ed.retrocessoId}`}>
-            {getManagerName(ed.retrocessoId)} ({getSquadName(ed.retrocessoSquadId)})
-          </a>
+          <Link href={`/partecipanti/${ed.retrocessoId}`}>
+            {getManagerName(ed.retrocessoId)} (
+            {getSquadName(ed.retrocessoSquadId)})
+          </Link>
         </span>
       </div>
     </div>
@@ -119,7 +119,7 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
         />
       </div>
       <div className="podio-name">
-        <a href={`/manager/${manager.id}`}>{manager.nome}</a>
+        <Link href={`/partecipanti/${manager.id}`}>{manager.nome}</Link>
       </div>
       <div className="podio-medals">{chips}</div>
     </div>

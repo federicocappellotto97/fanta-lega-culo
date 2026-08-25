@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -14,11 +15,16 @@ export default function MainNav() {
   return (
     <nav className="main-nav" aria-label="Navigazione principale">
       {links.map(({ href, label }) => {
-        const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+        const isActive =
+          href === "/" ? pathname === "/" : pathname.startsWith(href);
         return (
-          <a key={href} href={href} className={isActive ? "active" : undefined}>
+          <Link
+            key={href}
+            href={href}
+            className={isActive ? "active" : undefined}
+          >
             {label}
-          </a>
+          </Link>
         );
       })}
     </nav>

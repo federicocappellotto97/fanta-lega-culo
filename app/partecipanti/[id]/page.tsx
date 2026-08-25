@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MANAGERS } from "@/lib/data/managers";
 import { getPalmares } from "@/lib/data/halloffame";
@@ -13,8 +14,13 @@ export function generateStaticParams() {
   return MANAGERS.map((m) => ({ id: m.id }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const manager = MANAGERS.find((m) => m.id === params.id);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const manager = MANAGERS.find((m) => m.id === id);
   if (!manager) return {};
   return { title: manager.nome };
 }
@@ -28,8 +34,13 @@ function escapeHtml(str: string): string {
     .replace(/'/g, "&#39;");
 }
 
-export default function ManagerPage({ params }: { params: { id: string } }) {
-  const manager = MANAGERS.find((m) => m.id === params.id);
+export default async function ManagerPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const manager = MANAGERS.find((m) => m.id === id);
   if (!manager) notFound();
 
   const { campionati, coppe, supercoppe, retrocessioni } = getPalmares(
@@ -200,7 +211,8 @@ export default function ManagerPage({ params }: { params: { id: string } }) {
     <section className="section" style={{ paddingTop: 32 }}>
       <div className="wrap">
         <p className="breadcrumb">
-          <a href="/partecipanti">Partecipanti</a> / {escapeHtml(manager.nome)}
+          <Link href="/partecipanti">Partecipanti</Link> /{" "}
+          {escapeHtml(manager.nome)}
         </p>
 
         <div className="manager-hero">

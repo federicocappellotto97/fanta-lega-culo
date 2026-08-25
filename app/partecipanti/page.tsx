@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MANAGERS, type Manager } from "@/lib/data/managers";
 import { getPalmares } from "@/lib/data/halloffame";
 import { getSquadName } from "@/lib/data/squads";
@@ -85,9 +86,9 @@ function FigurinaCard({ manager }: { manager: Manager }) {
   const fallback = `https://picsum.photos/seed/${encodeURIComponent(manager.id)}/480/640`;
 
   return (
-    <a
+    <Link
       className={`figurina${active ? "" : " ex"}`}
-      href={`/manager/${manager.id}`}
+      href={`/partecipanti/${manager.id}`}
     >
       <div className="figurina-photo">
         <FallbackImg
@@ -109,7 +110,7 @@ function FigurinaCard({ manager }: { manager: Manager }) {
       <div className="medals">
         <CompactMedals managerId={manager.id} />
       </div>
-    </a>
+    </Link>
   );
 }
 
