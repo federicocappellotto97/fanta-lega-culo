@@ -97,21 +97,21 @@ export const SQUADS: Record<string, Squad> = {
   },
   kapadokya: {
     nome: "Kapadokya FC",
-    colori: ["#d32f2f", "#c8901a"],
+    colori: ["#561614", "#f5c73e"],
     emoji: "🎈",
     fantacalcioId: 16108556,
     matchKeyword: "KAPADOKYA",
   },
   gorgeous: {
     nome: "Gorgeous FC",
-    colori: ["#f48fb1", "#66bb6a"],
+    colori: ["#f186ae", "#2dad4c"],
     emoji: "🪞",
     fantacalcioId: 16358145,
     matchKeyword: "GORGEOUS",
   },
   turkish: {
     nome: "Turkish Pizza&Kebab di Uslu Ismael",
-    colori: ["#1a1a1a", "#2d2d2d"],
+    colori: ["#000000"],
     emoji: "🌯",
     fantacalcioId: 16171071,
     matchKeyword: "TURKISH",
@@ -125,7 +125,7 @@ export const SQUADS: Record<string, Squad> = {
   },
   "latex-boys": {
     nome: "Latex Boys",
-    colori: ["#1a1a1a", "#ffffff"],
+    colori: ["#000000", "#ffffff"],
     emoji: "🌚",
     fantacalcioId: 3218391,
     matchKeyword: "LATEX",

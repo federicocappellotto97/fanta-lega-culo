@@ -146,16 +146,20 @@ export default async function ManagerPage({
                 <div className="squad-meta-item">
                   <span className="squad-meta-key">Colori sociali</span>
                   <span className="squad-meta-val squad-colors">
-                    <span
-                      className="color-swatch"
-                      style={{ background: color1 }}
-                      title={color1}
-                    />
-                    <span
-                      className="color-swatch"
-                      style={{ background: color2 }}
-                      title={color2}
-                    />
+                    {color1 && (
+                      <span
+                        className="color-swatch"
+                        style={{ background: color1 }}
+                        title={color1}
+                      />
+                    )}
+                    {color2 && (
+                      <span
+                        className="color-swatch"
+                        style={{ background: color2 }}
+                        title={color2}
+                      />
+                    )}
                   </span>
                 </div>
               </div>
