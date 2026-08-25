@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="it">
+    <html lang="it" data-scroll-behavior="smooth">
       <body>
         <a className="skip-link" href="#app">
           Vai al contenuto
@@ -45,10 +45,14 @@ export default function RootLayout({
         <footer className="site-footer">
           <div className="wrap">
             <span>
-              FANTA LEGA-CULO &middot; presieduta da{" "}
-              <strong>Federico Ottavio</strong>
+              FANTA LEGA-CULO &middot; presieduta dal{" "}
+              <strong>Presidente Federico Ottavio</strong>
             </span>
-            <span>Dal 2018/19, edizione dopo edizione</span>
+            <div>
+              <span>Dal 2018/19, edizione dopo edizione</span>
+              <br />
+              <em>Stiamo lavorando per voi</em>
+            </div>
           </div>
         </footer>
       </body>
