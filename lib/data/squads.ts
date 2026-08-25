@@ -29,7 +29,7 @@ export const SQUADS: Record<string, Squad> = {
   },
   "team-culo": {
     nome: "Team Culo",
-    colori: ["#8b0000", "#f0e6d3"],
+    colori: ["#179f93", "#000000"],
   },
   novellini: {
     nome: "I Novellini",
@@ -65,7 +65,7 @@ export const SQUADS: Record<string, Squad> = {
   },
   minnesota: {
     nome: "CM Minnesota",
-    colori: ["#5b2d8e", "#1a1a1a"],
+    colori: ["#8b6fac", "#000000"],
     emoji: "🐎",
     fantacalcioId: 3219043,
     matchKeyword: "MINNESOTA",
