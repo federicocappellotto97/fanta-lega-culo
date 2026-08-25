@@ -80,7 +80,7 @@ export const MANAGERS: Manager[] = [
     fotoBN: "/assets/managers/bw/dalbianco.png",
     presenteDal: "1.0",
     presenteFinoAl: "7.0",
-    squadre: [{ squadId: "robotty", dal: "1.0", al: null }],
+    squadre: [{ squadId: "robotty", dal: "1.0", al: "7.0" }],
   },
   {
     id: "ponzioandrea",
