@@ -916,7 +916,6 @@ img {
   height: 96px;
   object-fit: contain;
   border-radius: 8px;
-  background: var(--navy);
   padding: 8px;
 }
 
