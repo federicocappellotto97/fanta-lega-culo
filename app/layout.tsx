@@ -1,6 +1,6 @@
-import "./globals.css";
-import Link from "next/link";
-import MainNav from "./components/MainNav";
+import "./globals.css"
+import Link from "next/link"
+import MainNav from "./components/MainNav"
 
 export const metadata = {
   title: {
@@ -8,13 +8,13 @@ export const metadata = {
     template: "%s — FANTA LEGA-CULO",
   },
   description:
-    "Albo d'oro, partecipanti e schede manager della FANTA LEGA-CULO, lega privata di fantacalcio dal 2018.",
-};
+    "Albo d'oro, partecipanti e schede fantallenatori della FANTA LEGA-CULO, lega privata di fantacalcio dal 2018.",
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="it" data-scroll-behavior="smooth">
@@ -57,5 +57,5 @@ export default function RootLayout({
         </footer>
       </body>
     </html>
-  );
+  )
 }
