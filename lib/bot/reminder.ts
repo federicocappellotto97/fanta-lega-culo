@@ -108,7 +108,6 @@ export async function runFormationReminder(): Promise<{
   console.log(`Minuti alla partita: ${minutesLeft.toFixed(0)} min`)
 
   if (minutesLeft > MINUTES_LEFT || minutesLeft <= 0) {
-    await sendReminder("This is a test reminder message.")
     return { sent: false, matchday, reason: "outside_window" }
   }
 
