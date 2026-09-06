@@ -1,7 +1,8 @@
 # FANTA LEGA-CULO — sito
 
 Sito statico (nessun build, nessuna dipendenza da installare): un `index.html`
-+ CSS + qualche file JS. Apri la cartella su un hosting qualsiasi e funziona.
+
+- CSS + qualche file JS. Apri la cartella su un hosting qualsiasi e funziona.
 
 ## Struttura
 
@@ -26,6 +27,7 @@ fammelo fare in una prossima chat, allegando i file aggiornati).
 ## Come funziona il routing
 
 Una sola pagina HTML, navigazione via `#/...`:
+
 - `#/` → home
 - `#/albo` → albo d'oro (stagione per stagione + medagliere)
 - `#/partecipanti` → griglia di tutti i manager
