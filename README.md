@@ -61,6 +61,28 @@ python3 -m http.server 8000
 
 poi apri `http://localhost:8000`.
 
+## Bot Telegram e reminder formazione
+
+Il bot Telegram e il reminder sono gestiti dal progetto Next.js. Il webhook
+resta disponibile su `/api/telegram`; il reminder viene eseguito da Vercel
+ogni 15 minuti dalle 08:00 alle 20:45 su `/api/reminder`.
+
+Configura queste variabili d'ambiente in locale e su Vercel:
+
+```env
+BOT_TOKEN=...
+CHAT_ID=...
+API_TOKEN=...
+NEON_CONNECTION=...
+MINUTES_LEFT=60
+CRON_SECRET=...
+```
+
+`CRON_SECRET` protegge la route del reminder; se non è impostato, la route è
+accessibile senza autenticazione, utile solo per test locali. Il database deve
+contenere la tabella `notifications` con il record `id = 'last_match'`, usato
+per inviare una sola notifica per giornata.
+
 ## Come pubblicarlo
 
 Qualsiasi hosting statico va bene — dato che gestisci già domini/cPanel,
