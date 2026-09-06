@@ -84,6 +84,9 @@ export async function runFormationReminder(): Promise<{
 
   const lastSent = await getLastSentMatchday()
   const matchday = lastSent + 1
+
+  console.log("Last sent matchday:", lastSent)
+  console.log("Current matchday:", matchday)
   const response = await fetch(
     `https://api.football-data.org/v4/competitions/2019/matches?matchday=${matchday}`,
     { headers: { "X-Auth-Token": apiToken } },
@@ -99,7 +102,13 @@ export async function runFormationReminder(): Promise<{
 
   const minutesLeft =
     (new Date(firstMatch.utcDate).getTime() - Date.now()) / 60000
+  console.log(
+    `Prima partita matchday ${matchday}: ${firstMatch.homeTeam.name} vs ${firstMatch.awayTeam.name}`,
+  )
+  console.log(`Minuti alla partita: ${minutesLeft.toFixed(0)} min`)
+
   if (minutesLeft > MINUTES_LEFT || minutesLeft <= 0) {
+    await sendReminder("This is a test reminder message.")
     return { sent: false, matchday, reason: "outside_window" }
   }
 
