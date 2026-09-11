@@ -9,6 +9,7 @@ const PARTICIPANTS = [
   "@GiooFe",
   "@andreeazanin",
   "@foxysetazz",
+  "@Paologasp12",
 ]
 
 interface Match {
