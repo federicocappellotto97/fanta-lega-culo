@@ -4,13 +4,13 @@ import { getSquadName } from "@/lib/data/squads"
 export interface Edizione {
   edizione: string
   stagione: string
-  campionatoId: string
+  campionatoId: string | null
   versioneCoppa: string | null
   coppaId: string | null
   versioneSupercoppa: string | null
   supercoppaId: string | null
-  retrocessoId: string
-  retrocessoSquadId: string
+  retrocessoId: string | null
+  retrocessoSquadId: string | null
 }
 
 export interface Palmares {
@@ -138,8 +138,8 @@ export const ALBO_D_ORO: Edizione[] = [
   },
 ]
 
-export function getManagerName(id: string): string {
-  return MANAGERS.find((m) => m.id === id)?.nome ?? id
+export function getManagerName(id: string | null): string {
+  return id ? (MANAGERS.find((m) => m.id === id)?.nome ?? id) : "non assegnato"
 }
 
 // Calcola, per un dato id manager, i premi vinti incrociando ALBO_D_ORO.
@@ -191,7 +191,11 @@ export function getAlboDOroPerStagione(): string {
     msg += ed.supercoppaId
       ? `   🎖️ Supercoppa ${ed.versioneSupercoppa}: *${getManagerName(ed.supercoppaId)}*\n`
       : `   🎖️ Supercoppa: non fatta\n`
-    msg += `   📉 Retrocesso: *${getManagerName(ed.retrocessoId)} (${getSquadName(ed.retrocessoSquadId)})*\n\n`
+    msg += ed.retrocessoId
+      ? `   📉 Retrocesso: *${getManagerName(ed.retrocessoId)}${
+          ed.retrocessoSquadId ? ` (${getSquadName(ed.retrocessoSquadId)})` : ""
+        }*\n\n`
+      : "   📉 Retrocesso: *non assegnato*\n\n"
   }
   return msg.trim()
 }

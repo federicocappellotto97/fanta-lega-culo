@@ -38,24 +38,28 @@ function buildManagersContext(): string {
 // Serializza ALBO_D_ORO stagione per stagione.
 function buildAlboContext(): string {
   return ALBO_D_ORO.map((ed) => {
-    const campione =
-      MANAGERS.find((m) => m.id === ed.campionatoId)?.nome ?? ed.campionatoId;
+    const campione = ed.campionatoId
+      ? (MANAGERS.find((m) => m.id === ed.campionatoId)?.nome ?? ed.campionatoId)
+      : "non assegnato";
     const coppista = ed.coppaId
       ? (MANAGERS.find((m) => m.id === ed.coppaId)?.nome ?? ed.coppaId)
       : "non assegnata";
     const supercoppista = ed.supercoppaId
       ? (MANAGERS.find((m) => m.id === ed.supercoppaId)?.nome ?? ed.supercoppaId)
       : "non assegnata";
-    const retrocesso =
-      MANAGERS.find((m) => m.id === ed.retrocessoId)?.nome ?? ed.retrocessoId;
-    const squadRet = getSquadName(ed.retrocessoSquadId);
+    const retrocesso = ed.retrocessoId
+      ? (MANAGERS.find((m) => m.id === ed.retrocessoId)?.nome ?? ed.retrocessoId)
+      : "non assegnato";
+    const squadRet = ed.retrocessoSquadId
+      ? ` (${getSquadName(ed.retrocessoSquadId)})`
+      : "";
 
     return [
       `Stagione ${ed.edizione} (${ed.stagione}):`,
       `  Campionato ${ed.edizione}: ${campione}`,
       `  Coppa Culo ${ed.versioneCoppa ?? "—"}: ${coppista}`,
       `  Supercoppa ${ed.versioneSupercoppa ?? "—"}: ${supercoppista}`,
-      `  Retrocesso: ${retrocesso} (${squadRet})`,
+      `  Retrocesso: ${retrocesso}${squadRet}`,
     ].join("\n");
   }).join("\n\n");
 }

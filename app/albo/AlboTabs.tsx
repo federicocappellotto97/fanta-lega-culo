@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import type { Edizione, MedagliereRow } from "@/lib/data/halloffame";
-import { getManagerName } from "@/lib/data/halloffame";
-import Link from "next/link";
-import { getSquadName } from "@/lib/data/squads";
+import { useState } from "react"
+import type { Edizione, MedagliereRow } from "@/lib/data/halloffame"
+import { getManagerName } from "@/lib/data/halloffame"
+import Link from "next/link"
+import { getSquadName } from "@/lib/data/squads"
 
 interface Props {
-  editions: Edizione[];
-  medagliere: MedagliereRow[];
+  editions: Edizione[]
+  medagliere: MedagliereRow[]
 }
 
-type Tab = "stagioni" | "medagliere";
+type Tab = "stagioni" | "medagliere"
 
 // ─── Season row ──────────────────────────────────────────────────────────────
 
 function SeasonRow({ ed }: { ed: Edizione }) {
   const managerLink = (id: string | null) =>
-    id ? <Link href={`/partecipanti/${id}`}>{getManagerName(id)}</Link> : null;
+    id ? <Link href={`/partecipanti/${id}`}>{getManagerName(id)}</Link> : null
 
   return (
     <div className="season-row">
@@ -26,79 +26,87 @@ function SeasonRow({ ed }: { ed: Edizione }) {
         <span className="yr">{ed.stagione}</span>
       </div>
 
-      <div className="season-cell">
+      <div className={`season-cell${!ed.campionatoId ? " empty" : ""}`}>
         <span className="k">🏆 Campionato</span>
-        <span className="v">{managerLink(ed.campionatoId)}</span>
+        <span className="v">
+          {ed.campionatoId ? managerLink(ed.campionatoId) : "---"}
+        </span>
       </div>
 
       <div className={`season-cell${!ed.coppaId ? " empty" : ""}`}>
         <span className="k">🥈 Coppa Culo</span>
         <span className="v">
-          {ed.coppaId ? managerLink(ed.coppaId) : "Non fatta"}
+          {ed.coppaId ? managerLink(ed.coppaId) : "---"}
         </span>
       </div>
 
       <div className={`season-cell${!ed.supercoppaId ? " empty" : ""}`}>
         <span className="k">🎖️ Supercoppa</span>
         <span className="v">
-          {ed.supercoppaId ? managerLink(ed.supercoppaId) : "Non fatta"}
+          {ed.supercoppaId ? managerLink(ed.supercoppaId) : "---"}
         </span>
       </div>
 
-      <div className="season-cell">
+      <div className={`season-cell${!ed.retrocessoId ? " empty" : ""}`}>
         <span className="k">📉 Retrocesso</span>
         <span className="v">
-          <Link href={`/partecipanti/${ed.retrocessoId}`}>
-            {getManagerName(ed.retrocessoId)} (
-            {getSquadName(ed.retrocessoSquadId)})
-          </Link>
+          {ed.retrocessoId ? (
+            <Link href={`/partecipanti/${ed.retrocessoId}`}>
+              {getManagerName(ed.retrocessoId)}
+              {ed.retrocessoSquadId
+                ? ` (${getSquadName(ed.retrocessoSquadId)})`
+                : ""}
+            </Link>
+          ) : (
+            "---"
+          )}
         </span>
       </div>
     </div>
-  );
+  )
 }
 
 // ─── Podio row ────────────────────────────────────────────────────────────────
 
 function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
-  const pos = index + 1;
-  const posIcon = (["🥇", "🥈", "🥉"] as const)[index] ?? `#${pos}`;
-  const manager = row.manager;
+  const pos = index + 1
+  const posIcon = (["🥇", "🥈", "🥉"] as const)[index] ?? `#${pos}`
+  const manager = row.manager
 
-  const seed = encodeURIComponent(manager.id);
-  const fallback = `https://picsum.photos/seed/${seed}/480/640`;
+  const seed = encodeURIComponent(manager.id)
+  const fallback = `https://picsum.photos/seed/${seed}/480/640`
 
-  const chips: React.ReactNode[] = [];
+  const chips: React.ReactNode[] = []
   if (row.campionati.length)
     chips.push(
       <span key="c" className="medal gold">
         🏆 Campionati × {row.campionati.length}
       </span>,
-    );
+    )
   if (row.coppe.length)
     chips.push(
       <span key="k" className="medal silver">
         🥈 Coppe × {row.coppe.length}
       </span>,
-    );
+    )
   if (row.supercoppe.length)
     chips.push(
       <span key="s" className="medal bronze">
         🎖️ Supercoppe × {row.supercoppe.length}
       </span>,
-    );
+    )
   if (row.retrocessioni.length)
     chips.push(
       <span key="r" className="medal down">
         📉 Retrocessioni × {row.retrocessioni.length}
       </span>,
-    );
+    )
   if (!chips.length)
     chips.push(
       <span key="empty" className="medal">
         Bacheca vuota
       </span>,
-    );
+    )
 
   return (
     <div className={`podio-row rank-${pos}`}>
@@ -112,9 +120,9 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
           height={46}
           loading="lazy"
           onError={(e) => {
-            const img = e.currentTarget;
-            img.onerror = null;
-            img.src = fallback;
+            const img = e.currentTarget
+            img.onerror = null
+            img.src = fallback
           }}
         />
       </div>
@@ -123,13 +131,13 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
       </div>
       <div className="podio-medals">{chips}</div>
     </div>
-  );
+  )
 }
 
 // ─── AlboTabs (main export) ───────────────────────────────────────────────────
 
 export default function AlboTabs({ editions, medagliere }: Props) {
-  const [activeTab, setActiveTab] = useState<Tab>("stagioni");
+  const [activeTab, setActiveTab] = useState<Tab>("stagioni")
 
   return (
     <section className="section" style={{ paddingTop: 40 }}>
@@ -192,5 +200,5 @@ export default function AlboTabs({ editions, medagliere }: Props) {
         </div>
       </div>
     </section>
-  );
+  )
 }

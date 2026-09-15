@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { MANAGERS } from "@/lib/data/managers";
+import Link from "next/link"
+import { MANAGERS } from "@/lib/data/managers"
 import {
   ALBO_D_ORO,
   getMedagliere,
@@ -7,17 +7,17 @@ import {
   getPalmares,
   type Edizione,
   type MedagliereRow,
-} from "@/lib/data/halloffame";
-import { getSquadName, getSquadCrestPath } from "@/lib/data/squads";
-import type { Manager } from "@/lib/data/managers";
-import { FallbackImg } from "@/app/components/FallbackImg";
+} from "@/lib/data/halloffame"
+import { getSquadName, getSquadCrestPath } from "@/lib/data/squads"
+import type { Manager } from "@/lib/data/managers"
+import { FallbackImg } from "@/app/components/FallbackImg"
 
-export const metadata = { title: "FANTA LEGA-CULO" };
+export const metadata = { title: "FANTA LEGA-CULO" }
 
 /* ---------- Image helpers ---------- */
 
 function managerFallback(id: string) {
-  return `https://picsum.photos/seed/${encodeURIComponent(id)}/480/640`;
+  return `https://picsum.photos/seed/${encodeURIComponent(id)}/480/640`
 }
 
 /* ---------- Medal chips ---------- */
@@ -27,21 +27,21 @@ function MedalChip({
   label,
   count,
 }: {
-  cls: string;
-  label: string;
-  count: number;
+  cls: string
+  label: string
+  count: number
 }) {
   return (
     <span className={`medal ${cls}`}>
       {label} × {count}
     </span>
-  );
+  )
 }
 
 function CompactMedals({ managerId }: { managerId: string }) {
   const { campionati, coppe, supercoppe, retrocessioni } =
-    getPalmares(managerId);
-  const chips: React.ReactNode[] = [];
+    getPalmares(managerId)
+  const chips: React.ReactNode[] = []
   if (campionati.length)
     chips.push(
       <MedalChip
@@ -50,11 +50,11 @@ function CompactMedals({ managerId }: { managerId: string }) {
         label="🏆 Campionati"
         count={campionati.length}
       />,
-    );
+    )
   if (coppe.length)
     chips.push(
       <MedalChip key="k" cls="silver" label="🥈 Coppe" count={coppe.length} />,
-    );
+    )
   if (supercoppe.length)
     chips.push(
       <MedalChip
@@ -63,7 +63,7 @@ function CompactMedals({ managerId }: { managerId: string }) {
         label="🎖️ Supercoppe"
         count={supercoppe.length}
       />,
-    );
+    )
   if (retrocessioni.length)
     chips.push(
       <MedalChip
@@ -72,9 +72,9 @@ function CompactMedals({ managerId }: { managerId: string }) {
         label="📉 Retrocessioni"
         count={retrocessioni.length}
       />,
-    );
-  if (!chips.length) return <span className="medal">Bacheca vuota</span>;
-  return <>{chips}</>;
+    )
+  if (!chips.length) return <span className="medal">Bacheca vuota</span>
+  return <>{chips}</>
 }
 
 /* ---------- Figurina card ---------- */
@@ -82,8 +82,8 @@ function CompactMedals({ managerId }: { managerId: string }) {
 function FigurinaCard({ manager }: { manager: Manager }) {
   const squad =
     manager.squadre.find((s) => s.al === null) ??
-    manager.squadre[manager.squadre.length - 1];
-  const active = manager.presenteFinoAl === null;
+    manager.squadre[manager.squadre.length - 1]
+  const active = manager.presenteFinoAl === null
 
   return (
     <Link
@@ -107,7 +107,7 @@ function FigurinaCard({ manager }: { manager: Manager }) {
         <CompactMedals managerId={manager.id} />
       </div>
     </Link>
-  );
+  )
 }
 
 /* ---------- Season row ---------- */
@@ -117,16 +117,16 @@ function SeasonCell({
   value,
   empty,
 }: {
-  label: string;
-  value: React.ReactNode | null;
-  empty: string;
+  label: string
+  value: React.ReactNode | null
+  empty: string
 }) {
   return (
     <div className={`season-cell${value ? "" : " empty"}`}>
       <span className="k">{label}</span>
       <span className="v">{value ?? empty}</span>
     </div>
-  );
+  )
 }
 
 function SeasonRow({ ed }: { ed: Edizione }) {
@@ -170,33 +170,39 @@ function SeasonRow({ ed }: { ed: Edizione }) {
       <SeasonCell
         label="📉 Retrocesso"
         value={
-          <Link href={`/partecipanti/${ed.retrocessoId}`}>
-            {getManagerName(ed.retrocessoId)} (
-            {getSquadName(ed.retrocessoSquadId)})
-          </Link>
+          ed.retrocessoId ? (
+            <Link href={`/partecipanti/${ed.retrocessoId}`}>
+              {getManagerName(ed.retrocessoId)}
+              {ed.retrocessoSquadId
+                ? ` (${getSquadName(ed.retrocessoSquadId)})`
+                : ""}
+            </Link>
+          ) : (
+            "Non assegnato"
+          )
         }
         empty="—"
       />
     </div>
-  );
+  )
 }
 
 /* ---------- Podio row ---------- */
 
-const PODIO_ICONS = ["🥇", "🥈", "🥉"] as const;
+const PODIO_ICONS = ["🥇", "🥈", "🥉"] as const
 
 function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
-  const pos = index + 1;
-  const posIcon = PODIO_ICONS[index] ?? `#${pos}`;
-  const chips: React.ReactNode[] = [];
+  const pos = index + 1
+  const posIcon = PODIO_ICONS[index] ?? `#${pos}`
+  const chips: React.ReactNode[] = []
   if (row.campionati.length)
     chips.push(
       <MedalChip key="c" cls="gold" label="🏆" count={row.campionati.length} />,
-    );
+    )
   if (row.coppe.length)
     chips.push(
       <MedalChip key="k" cls="silver" label="🥈" count={row.coppe.length} />,
-    );
+    )
   if (row.supercoppe.length)
     chips.push(
       <MedalChip
@@ -205,7 +211,7 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
         label="🎖️"
         count={row.supercoppe.length}
       />,
-    );
+    )
   if (row.retrocessioni.length)
     chips.push(
       <MedalChip
@@ -214,7 +220,7 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
         label="📉"
         count={row.retrocessioni.length}
       />,
-    );
+    )
 
   return (
     <div className={`podio-row rank-${pos}`}>
@@ -235,18 +241,18 @@ function PodioRow({ row, index }: { row: MedagliereRow; index: number }) {
         {chips.length ? chips : <span className="medal">Bacheca vuota</span>}
       </div>
     </div>
-  );
+  )
 }
 
 /* ---------- Page ---------- */
 
 export default function HomePage() {
-  const editions = ALBO_D_ORO.length;
-  const managersCount = MANAGERS.length;
-  const activeCount = MANAGERS.filter((m) => m.presenteFinoAl === null).length;
-  const latest = ALBO_D_ORO[ALBO_D_ORO.length - 1];
-  const podio = getMedagliere().slice(0, 3);
-  const active = MANAGERS.filter((m) => m.presenteFinoAl === null);
+  const editions = ALBO_D_ORO.length
+  const managersCount = MANAGERS.length
+  const activeCount = MANAGERS.filter((m) => m.presenteFinoAl === null).length
+  const latest = ALBO_D_ORO[ALBO_D_ORO.length - 1]
+  const podio = getMedagliere().slice(0, 3)
+  const active = MANAGERS.filter((m) => m.presenteFinoAl === null)
 
   return (
     <>
@@ -352,5 +358,5 @@ export default function HomePage() {
         </div>
       </section>
     </>
-  );
+  )
 }
