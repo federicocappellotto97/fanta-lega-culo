@@ -1,31 +1,31 @@
-import { MANAGERS, type Manager } from "@/lib/data/managers";
-import { getSquadName } from "@/lib/data/squads";
+import { MANAGERS, type Manager } from "@/lib/data/managers"
+import { getSquadName } from "@/lib/data/squads"
 
 export interface Edizione {
-  edizione: string;
-  stagione: string;
-  campionatoId: string;
-  versioneCoppa: string | null;
-  coppaId: string | null;
-  versioneSupercoppa: string | null;
-  supercoppaId: string | null;
-  retrocessoId: string;
-  retrocessoSquadId: string;
+  edizione: string
+  stagione: string
+  campionatoId: string
+  versioneCoppa: string | null
+  coppaId: string | null
+  versioneSupercoppa: string | null
+  supercoppaId: string | null
+  retrocessoId: string
+  retrocessoSquadId: string
 }
 
 export interface Palmares {
-  campionati: string[];
-  coppe: string[];
-  supercoppe: string[];
-  retrocessioni: string[];
+  campionati: string[]
+  coppe: string[]
+  supercoppe: string[]
+  retrocessioni: string[]
 }
 
 export interface MedagliereRow {
-  manager: Manager;
-  campionati: string[];
-  coppe: string[];
-  supercoppe: string[];
-  retrocessioni: string[];
+  manager: Manager
+  campionati: string[]
+  coppe: string[]
+  supercoppe: string[]
+  retrocessioni: string[]
 }
 
 // Dati per stagione: chi vince campionato/coppa/supercoppa e chi retrocede
@@ -125,30 +125,41 @@ export const ALBO_D_ORO: Edizione[] = [
     retrocessoId: "ponziomattia",
     retrocessoSquadId: "niente-male",
   },
-];
+  {
+    edizione: "9.0",
+    stagione: "2026/27",
+    campionatoId: null,
+    versioneCoppa: "7.0",
+    coppaId: null,
+    versioneSupercoppa: "5.0",
+    supercoppaId: "zaninriccardo",
+    retrocessoId: null,
+    retrocessoSquadId: null,
+  },
+]
 
 export function getManagerName(id: string): string {
-  return MANAGERS.find((m) => m.id === id)?.nome ?? id;
+  return MANAGERS.find((m) => m.id === id)?.nome ?? id
 }
 
 // Calcola, per un dato id manager, i premi vinti incrociando ALBO_D_ORO.
 // Usata sia dal medagliere aggregato sia dalla scheda singolo manager.
 export function getPalmares(managerId: string): Palmares {
-  const campionati: string[] = [];
-  const coppe: string[] = [];
-  const supercoppe: string[] = [];
-  const retrocessioni: string[] = [];
+  const campionati: string[] = []
+  const coppe: string[] = []
+  const supercoppe: string[] = []
+  const retrocessioni: string[] = []
 
   for (const ed of ALBO_D_ORO) {
-    if (ed.campionatoId === managerId) campionati.push(ed.edizione);
+    if (ed.campionatoId === managerId) campionati.push(ed.edizione)
     if (ed.coppaId === managerId && ed.versioneCoppa !== null)
-      coppe.push(ed.versioneCoppa);
+      coppe.push(ed.versioneCoppa)
     if (ed.supercoppaId === managerId && ed.versioneSupercoppa !== null)
-      supercoppe.push(ed.versioneSupercoppa);
-    if (ed.retrocessoId === managerId) retrocessioni.push(ed.edizione);
+      supercoppe.push(ed.versioneSupercoppa)
+    if (ed.retrocessoId === managerId) retrocessioni.push(ed.edizione)
   }
 
-  return { campionati, coppe, supercoppe, retrocessioni };
+  return { campionati, coppe, supercoppe, retrocessioni }
 }
 
 // Medagliere aggregato, ordinato con gli stessi criteri del bot Telegram:
@@ -158,60 +169,56 @@ export function getMedagliere(): MedagliereRow[] {
     manager,
     ...getPalmares(manager.id),
   })).sort((a, b) => {
-    const diffCampionati = b.campionati.length - a.campionati.length;
-    if (diffCampionati !== 0) return diffCampionati;
-    const diffCoppe = b.coppe.length - a.coppe.length;
-    if (diffCoppe !== 0) return diffCoppe;
-    const diffSupercoppe = b.supercoppe.length - a.supercoppe.length;
-    if (diffSupercoppe !== 0) return diffSupercoppe;
-    return a.retrocessioni.length - b.retrocessioni.length;
-  });
+    const diffCampionati = b.campionati.length - a.campionati.length
+    if (diffCampionati !== 0) return diffCampionati
+    const diffCoppe = b.coppe.length - a.coppe.length
+    if (diffCoppe !== 0) return diffCoppe
+    const diffSupercoppe = b.supercoppe.length - a.supercoppe.length
+    if (diffSupercoppe !== 0) return diffSupercoppe
+    return a.retrocessioni.length - b.retrocessioni.length
+  })
 }
 
 // Formattazione testuale per il bot Telegram — risposta al comando /halloffame.
 export function getAlboDOroPerStagione(): string {
-  let msg = "🏆 *ALBO D'ORO FANTA LEGA-CULO* 🏆\n\n";
+  let msg = "🏆 *ALBO D'ORO FANTA LEGA-CULO* 🏆\n\n"
   for (const ed of ALBO_D_ORO) {
-    msg += `📅 *FANTA LEGA-CULO ${ed.edizione} — ${ed.stagione}*\n`;
-    msg += `   👑 Campionato ${ed.edizione}: *${getManagerName(ed.campionatoId)}*\n`;
+    msg += `📅 *FANTA LEGA-CULO ${ed.edizione} — ${ed.stagione}*\n`
+    msg += `   👑 Campionato ${ed.edizione}: *${getManagerName(ed.campionatoId)}*\n`
     msg += ed.coppaId
       ? `   🏆 Coppa ${ed.versioneCoppa}: *${getManagerName(ed.coppaId)}*\n`
-      : `   🏆 Coppa Culo: non fatta\n`;
+      : `   🏆 Coppa Culo: non fatta\n`
     msg += ed.supercoppaId
       ? `   🎖️ Supercoppa ${ed.versioneSupercoppa}: *${getManagerName(ed.supercoppaId)}*\n`
-      : `   🎖️ Supercoppa: non fatta\n`;
-    msg += `   📉 Retrocesso: *${getManagerName(ed.retrocessoId)} (${getSquadName(ed.retrocessoSquadId)})*\n\n`;
+      : `   🎖️ Supercoppa: non fatta\n`
+    msg += `   📉 Retrocesso: *${getManagerName(ed.retrocessoId)} (${getSquadName(ed.retrocessoSquadId)})*\n\n`
   }
-  return msg.trim();
+  return msg.trim()
 }
 
-const PODIO_EMOJI = ["🥇", "🥈", "🥉"] as const;
+const PODIO_EMOJI = ["🥇", "🥈", "🥉"] as const
 
 // Formattazione testuale per il bot Telegram — risposta al comando /medagliere.
 export function getAlboDOroPerAllenatore(): string {
-  const allenatori = getMedagliere();
+  const allenatori = getMedagliere()
 
-  let msg = "🏅 *MEDAGLIERE FANTA LEGA-CULO* 🏅\n\n";
+  let msg = "🏅 *MEDAGLIERE FANTA LEGA-CULO* 🏅\n\n"
   allenatori.forEach((dati, i) => {
-    const podio = PODIO_EMOJI[i] ?? "";
-    msg += `${podio ? `${podio} ` : ""}*${dati.manager.nome}*\n`;
-    msg += `   👑 Campionati: *${dati.campionati.length}*`;
+    const podio = PODIO_EMOJI[i] ?? ""
+    msg += `${podio ? `${podio} ` : ""}*${dati.manager.nome}*\n`
+    msg += `   👑 Campionati: *${dati.campionati.length}*`
     msg +=
-      dati.campionati.length > 0
-        ? `  (${dati.campionati.join(", ")})\n`
-        : "\n";
-    msg += `   🏆 Coppe Culo: *${dati.coppe.length}*`;
-    msg += dati.coppe.length > 0 ? `  (${dati.coppe.join(", ")})\n` : "\n";
-    msg += `   🎖️ Supercoppe: *${dati.supercoppe.length}*`;
+      dati.campionati.length > 0 ? `  (${dati.campionati.join(", ")})\n` : "\n"
+    msg += `   🏆 Coppe Culo: *${dati.coppe.length}*`
+    msg += dati.coppe.length > 0 ? `  (${dati.coppe.join(", ")})\n` : "\n"
+    msg += `   🎖️ Supercoppe: *${dati.supercoppe.length}*`
     msg +=
-      dati.supercoppe.length > 0
-        ? `  (${dati.supercoppe.join(", ")})\n`
-        : "\n";
-    msg += `   📉 Retrocessioni: *${dati.retrocessioni.length}*`;
+      dati.supercoppe.length > 0 ? `  (${dati.supercoppe.join(", ")})\n` : "\n"
+    msg += `   📉 Retrocessioni: *${dati.retrocessioni.length}*`
     msg +=
       dati.retrocessioni.length > 0
         ? `  (${dati.retrocessioni.join(", ")})\n\n`
-        : "\n\n";
-  });
-  return msg.trim();
+        : "\n\n"
+  })
+  return msg.trim()
 }
